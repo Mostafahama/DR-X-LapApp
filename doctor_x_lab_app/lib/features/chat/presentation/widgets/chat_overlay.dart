@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../../app/theme/colors.dart';
 import '../../../../app/theme/spacing.dart';
 import '../../../../core/widgets/glass_card.dart';
 
 class ChatOverlay extends StatelessWidget {
-  const ChatOverlay({super.key});
+  final String name;
+  final String role;
+  final bool isOnline;
+
+  const ChatOverlay({
+    super.key,
+    required this.name,
+    required this.role,
+    this.isOnline = true,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     return Container(
       margin: const EdgeInsets.only(top: 60), // Positioned below main app bar
       child: GlassCard(
@@ -16,16 +27,16 @@ class ChatOverlay extends StatelessWidget {
         padding: EdgeInsets.zero,
         child: Column(
           children: [
-            _buildHeader(context),
-            Expanded(child: _buildMessageList(context)),
-            _buildInputArea(context),
+            _buildHeader(context, l10n),
+            Expanded(child: _buildMessageList(context, l10n)),
+            _buildInputArea(context, l10n),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildHeader(BuildContext context) {
+  Widget _buildHeader(BuildContext context, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: BoxDecoration(
@@ -38,55 +49,40 @@ class ChatOverlay extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18, color: DoctorXColors.onSurface),
           ),
-          Stack(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [DoctorXColors.primary.withOpacity(0.1), DoctorXColors.primary.withOpacity(0.2)]),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: const Center(
-                  child: Text('ER', style: TextStyle(color: DoctorXColors.primary, fontWeight: FontWeight.w900, fontSize: 16)),
-                ),
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Container(
-                  width: 12,
-                  height: 12,
-                  decoration: BoxDecoration(
-                    color: DoctorXColors.success,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.white, width: 2.5),
-                  ),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Dr. Elena Rodriguez',
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: -0.2),
+                Text(
+                  name,
+                  style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: -0.2),
                 ),
                 Row(
                   children: [
-                    Container(
-                      width: 6,
-                      height: 6,
-                      decoration: const BoxDecoration(color: DoctorXColors.success, shape: BoxShape.circle),
-                    ),
-                    const SizedBox(width: 4),
-                    const Text(
-                      'ACTIVE NOW',
-                      style: TextStyle(color: DoctorXColors.success, fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 1),
-                    ),
+                    if (isOnline) ...[
+                      Container(
+                        width: 6,
+                        height: 6,
+                        decoration: const BoxDecoration(color: DoctorXColors.success, shape: BoxShape.circle),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        l10n.activeNow,
+                        style: const TextStyle(color: DoctorXColors.success, fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 1),
+                      ),
+                    ] else ...[
+                       Container(
+                        width: 6,
+                        height: 6,
+                        decoration: const BoxDecoration(color: DoctorXColors.outline, shape: BoxShape.circle),
+                      ),
+                      const SizedBox(width: 4),
+                      const Text(
+                        'OFFLINE',
+                        style: TextStyle(color: DoctorXColors.outline, fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 1),
+                      ),
+                    ],
                   ],
                 ),
               ],
@@ -112,7 +108,7 @@ class ChatOverlay extends StatelessWidget {
     );
   }
 
-  Widget _buildMessageList(BuildContext context) {
+  Widget _buildMessageList(BuildContext context, AppLocalizations l10n) {
     return Container(
       decoration: BoxDecoration(
         color: DoctorXColors.surfaceContainerLow.withOpacity(0.2),
@@ -120,7 +116,7 @@ class ChatOverlay extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          _buildDateDivider('TODAY'),
+          _buildDateDivider(l10n.today),
           _buildReceivedMessage(
             context,
             'Good morning Dr. Julian. I have reviewed the CBC results for patient #49201.',
@@ -242,7 +238,7 @@ class ChatOverlay extends StatelessWidget {
     );
   }
 
-  Widget _buildInputArea(BuildContext context) {
+  Widget _buildInputArea(BuildContext context, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
       decoration: BoxDecoration(
@@ -261,11 +257,11 @@ class ChatOverlay extends StatelessWidget {
                     borderRadius: BorderRadius.circular(24),
                     border: Border.all(color: Colors.white),
                   ),
-                  child: const TextField(
+                  child: TextField(
                     decoration: InputDecoration(
-                      hintText: 'Type clinical message...',
+                      hintText: l10n.typeMessage,
                       border: InputBorder.none,
-                      hintStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: DoctorXColors.outline),
+                      hintStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: DoctorXColors.outline),
                     ),
                   ),
                 ),
@@ -286,10 +282,10 @@ class ChatOverlay extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildInputTool(Icons.image_outlined, 'PHOTOS'),
-              _buildInputTool(Icons.description_outlined, 'REPORTS'),
-              _buildInputTool(Icons.biotech_outlined, 'LAB'),
-              _buildInputTool(Icons.mic_none_rounded, 'VOICE'),
+              _buildInputTool(Icons.image_outlined, l10n.photos),
+              _buildInputTool(Icons.description_outlined, l10n.reports),
+              _buildInputTool(Icons.biotech_outlined, l10n.lab),
+              _buildInputTool(Icons.mic_none_rounded, l10n.voice),
             ],
           ),
         ],

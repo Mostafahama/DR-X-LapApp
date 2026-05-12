@@ -91,9 +91,21 @@
   "testThyroidPanel": "Thyroid Panel",
   "cardiologyWard": "Cardiology - 302",
   "patientNoteSarah": "Patient reporting acute fatigue and palpitations. Prioritize hematology panel. Fasting sample verified for lipid profile.",
-  "drSeries": "DR. SERIES",
+  "drSeries": "DR. X",
   "patientJamesWilson": "James Wilson",
   "techMarkV": "Tech. Mark V.",
   "techElenaR": "Tech. Elena R.",
-  "notAssigned": "Not Assigned"
+  "notAssigned": "Not Assigned",
+  "clinicalCommunications": "Clinical Communications",
+  "searchChat": "Search contacts or clinical threads...",
+  "active": "Active",
+  "channels": "Channels",
+  "justNow": "Just now",
+  "activeNow": "ACTIVE NOW",
+  "today": "TODAY",
+  "typeMessage": "Type clinical message...",
+  "photos": "PHOTOS",
+  "reports": "REPORTS",
+  "lab": "LAB",
+  "voice": "VOICE"
 }

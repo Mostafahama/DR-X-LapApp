@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Laboratory Results Queue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Cairo:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface": "#f7f9fb",
+                    "outline-variant": "#c2c6d8",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#f8f7ff",
+                    "surface-container-low": "#f2f4f6",
+                    "outline": "#727687",
+                    "on-tertiary-container": "#e1ffec",
+                    "surface-tint": "#0054d6",
+                    "on-primary-fixed": "#001849",
+                    "on-tertiary-fixed": "#002113",
+                    "tertiary-fixed": "#6ffbbe",
+                    "inverse-surface": "#2d3133",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "on-secondary": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary": "#0050cb",
+                    "on-primary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "on-background": "#191c1e",
+                    "tertiary": "#006645",
+                    "on-surface": "#191c1e",
+                    "tertiary-container": "#008259",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "surface-variant": "#e0e3e5",
+                    "secondary": "#515f74",
+                    "on-secondary-container": "#57657a",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "primary-container": "#0066ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#005236",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "surface-container-high": "#e6e8ea",
+                    "inverse-primary": "#b3c5ff",
+                    "background": "#f7f9fb",
+                    "surface-dim": "#d8dadc",
+                    "surface-container-highest": "#e0e3e5",
+                    "surface-bright": "#f7f9fb",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "primary-fixed": "#dae1ff",
+                    "secondary-container": "#d5e3fc",
+                    "surface-container": "#eceef0",
+                    "on-surface-variant": "#424656",
+                    "secondary-fixed": "#d5e3fc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "display": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+        }
+        .clinical-gradient {
+            background: linear-gradient(135deg, #0050cb 0%, #0066ff 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-[0_4px_32px_rgba(25,28,30,0.04)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<h1 class="font-inter tracking-tight font-semibold text-lg text-slate-900" style="">Results Queue</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-[10px] font-bold text-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Modern Labs Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDRIz-1yTkjIGxFj2I5cZR77S4VRoBc5lBoVwEO6VqzOskHHiNKhPUqderdHp4SSl21gFYI_FUiVpcjEvdUlfTV1FsMC2NzpzuNd9A8z-zggB37VLP7oCyItH004Y-UO2aZ_pKO4cMGyqOWfirD-sXpPYeerW5djoxVBZOCQpVl9PAXMJm7rQpk6p5JgWt6e7WpK0lQdzQFzRO9z3j0mcV-nyADfE4nmgzxrOOQHpOfBucdI4pXPM4Uq2qQKXWetIGjZkZexhAqB5z" style=""/>
+</div>
+</div>
+</header>
+<main class="pt-24 px-4 max-w-lg mx-auto">
+<!-- Section Header -->
+<div class="mb-6 px-2">
+<h2 class="text-2xl font-bold text-on-surface tracking-tight mb-1" style="">Results Queue</h2>
+<p class="text-on-surface-variant text-sm font-medium" style="">Tracking 14 active laboratory procedures</p>
+</div>
+<!-- Metrics Bento Grid (Liquid Glass) -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<div class="liquid-glass rounded-xl p-4 border-r-4 border-r-primary-container">
+<div class="text-outline text-[10px] font-bold uppercase tracking-widest mb-1" style="">Processing</div>
+<div class="text-3xl font-display font-bold tracking-tighter text-primary" style="">08</div>
+</div>
+<div class="liquid-glass rounded-xl p-4 border-r-4 border-r-tertiary">
+<div class="text-outline text-[10px] font-bold uppercase tracking-widest mb-1" style="">Ready</div>
+<div class="text-3xl font-display font-bold tracking-tighter text-tertiary" style="">06</div>
+</div>
+</div>
+<!-- Queue Filter Chips -->
+<div class="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+<button class="clinical-gradient text-on-primary px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap shadow-md" style="">All Tasks</button>
+<button class="bg-surface-container-lowest text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border border-white/40" style="">In Progress</button>
+<button class="bg-surface-container-lowest text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border border-white/40" style="">Ready to Upload</button>
+</div>
+<!-- Results List -->
+<div class="space-y-4">
+<!-- Row 1: Ready -->
+<div class="liquid-glass rounded-xl p-4 flex items-center justify-between transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="biotech" style="">biotech</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface" style="">Sarah Ahmed</div>
+<div class="text-xs text-on-surface-variant font-medium" style="">Lipid Profile</div>
+<div class="text-[10px] text-outline mt-1 uppercase tracking-tighter" style="">Oct 24, 08:30 AM</div>
+</div>
+</div>
+<div class="flex flex-col items-end justify-center">
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-wider" style="">Ready</span>
+<span class="material-symbols-outlined text-outline" style="">chevron_right</span>
+</div>
+</div>
+<!-- Row 2: In Progress -->
+<div class="liquid-glass rounded-xl p-4 flex items-center justify-between transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="hourglass_empty" style="">hourglass_empty</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface" style="">Chidi Anagonye</div>
+<div class="text-xs text-on-surface-variant font-medium" style="">Complete Blood Count (CBC)</div>
+<div class="text-[10px] text-outline mt-1 uppercase tracking-tighter" style="">Oct 24, 09:15 AM</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-wider" style="">Processing</span>
+<div class="w-16 h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-3/4"></div>
+</div>
+</div>
+</div>
+<!-- Row 3: Ready -->
+<div class="liquid-glass rounded-xl p-4 flex items-center justify-between transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="science" style="">science</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface" style="">Tahani Al-Jamil</div>
+<div class="text-xs text-on-surface-variant font-medium" style="">Thyroid Stimulating Hormone</div>
+<div class="text-[10px] text-outline mt-1 uppercase tracking-tighter" style="">Oct 24, 10:00 AM</div>
+</div>
+</div>
+<div class="flex flex-col items-end justify-center">
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-wider" style="">Ready</span>
+<span class="material-symbols-outlined text-outline" style="">chevron_right</span>
+</div>
+</div>
+<!-- Row 4: In Progress -->
+<div class="liquid-glass rounded-xl p-4 flex items-center justify-between transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="query_stats" style="">query_stats</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface" style="">Jason Mendoza</div>
+<div class="text-xs text-on-surface-variant font-medium" style="">Glucose Fasting</div>
+<div class="text-[10px] text-outline mt-1 uppercase tracking-tighter" style="">Oct 24, 10:45 AM</div>
+</div>
+</div>
+<div class="flex flex-col items-end gap-2">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-wider" style="">In Progress</span>
+<div class="w-16 h-1 bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary-container w-1/4"></div>
+</div>
+</div>
+</div>
+<!-- Row 5: Ready -->
+<div class="liquid-glass rounded-xl p-4 flex items-center justify-between transition-transform active:scale-[0.98]">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined" data-icon="medical_services" style="">medical_services</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface" style="">Michael Realman</div>
+<div class="text-xs text-on-surface-variant font-medium" style="">Renal Function Test</div>
+<div class="text-[10px] text-outline mt-1 uppercase tracking-tighter" style="">Oct 24, 11:20 AM</div>
+</div>
+</div>
+<div class="flex flex-col items-end justify-center">
+<span class="bg-tertiary-container text-on-tertiary-container text-[10px] px-2 py-1 rounded-md font-bold uppercase tracking-wider" style="">Ready</span>
+<span class="material-symbols-outlined text-outline" style="">chevron_right</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-t border-white/20 shadow-[0_-8px_32px_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" style="">assignment</span>
+<span class="font-inter text-[10px] uppercase tracking-widest font-bold" style="">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-blue-600/10 text-blue-700 dark:text-blue-300 rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>analytics</span>
+<span class="font-inter text-[10px] uppercase tracking-widest font-bold" style="">Results</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" style="">chat_bubble</span>
+<span class="font-inter text-[10px] uppercase tracking-widest font-bold" style="">Chat</span>
+</a>
+</nav>
+<!-- FAB (Suppressed per rules on Details/Queue screens, but including a floating 'Search' for UX context if needed - though strictly following exclusion rules for primary shell) -->
+</body></html>

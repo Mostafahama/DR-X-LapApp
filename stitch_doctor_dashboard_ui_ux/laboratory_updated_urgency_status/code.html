@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Cairo:wght@200..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#005236",
+                    "outline": "#727687",
+                    "inverse-primary": "#b3c5ff",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-surface-variant": "#424656",
+                    "background": "#f7f9fb",
+                    "secondary-fixed": "#d5e3fc",
+                    "surface-bright": "#f7f9fb",
+                    "on-primary-fixed": "#001849",
+                    "secondary": "#515f74",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "surface-container-high": "#e6e8ea",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "on-surface": "#191c1e",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#0054d6",
+                    "primary": "#0050cb",
+                    "error": "#ba1a1a",
+                    "primary-fixed": "#dae1ff",
+                    "tertiary-container": "#008259",
+                    "inverse-on-surface": "#eff1f3",
+                    "primary-fixed-dim": "#b3c5ff",
+                    "on-tertiary-container": "#e1ffec",
+                    "tertiary-fixed": "#6ffbbe",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#f8f7ff",
+                    "on-secondary-container": "#57657a",
+                    "inverse-surface": "#2d3133",
+                    "surface-container-low": "#f2f4f6",
+                    "on-tertiary-fixed": "#002113",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#f7f9fb",
+                    "primary-container": "#0066ff",
+                    "on-primary-fixed-variant": "#003fa4",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d8dadc",
+                    "tertiary-fixed-dim": "#4edea3",
+                    "outline-variant": "#c2c6d8",
+                    "on-background": "#191c1e",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "secondary-container": "#d5e3fc",
+                    "tertiary": "#006645",
+                    "surface-container": "#eceef0",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "display": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.4);
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.4);
+        }
+        .ghost-border {
+            border: 1px solid rgba(194, 198, 216, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface font-body min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-[0_4px_32px_rgba(25,28,30,0.04)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<h1 class="font-inter tracking-tight font-semibold text-lg text-slate-900" style="">Laboratory Requests</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-[10px] font-bold text-white overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover" data-alt="Modern Labs Logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDRIz-1yTkjIGxFj2I5cZR77S4VRoBc5lBoVwEO6VqzOskHHiNKhPUqderdHp4SSl21gFYI_FUiVpcjEvdUlfTV1FsMC2NzpzuNd9A8z-zggB37VLP7oCyItH004Y-UO2aZ_pKO4cMGyqOWfirD-sXpPYeerW5djoxVBZOCQpVl9PAXMJm7rQpk6p5JgWt6e7WpK0lQdzQFzRO9z3j0mcV-nyADfE4nmgzxrOOQHpOfBucdI4pXPM4Uq2qQKXWetIGjZkZexhAqB5z" style=""/>
+</div>
+</div>
+</header>
+<!-- Content Wrapper for Sticky Navs -->
+<main class="pt-20 pb-24 px-4 md:px-8 max-w-7xl mx-auto">
+<!-- Header Section with Stats - Bento Style -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="liquid-glass rounded-xl p-5 flex flex-col gap-1 ghost-border">
+<span class="text-[10px] uppercase tracking-widest font-bold text-slate-500" style="">Active Tasks</span>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-display font-bold tracking-tight text-primary" style="">24</span>
+<span class="material-symbols-outlined text-primary-container opacity-50" style="">biotech</span>
+</div>
+</div>
+<div class="liquid-glass rounded-xl p-5 flex flex-col gap-1 ghost-border">
+<span class="text-[10px] uppercase tracking-widest font-bold text-slate-500" style="">Urgent</span>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-display font-bold tracking-tight text-error" style="">03</span>
+<span class="material-symbols-outlined text-error opacity-50" style='font-variation-settings: "FILL" 1;'>priority_high</span>
+</div>
+</div>
+<div class="hidden md:flex liquid-glass rounded-xl p-5 flex-col gap-1 ghost-border">
+<span class="text-[10px] uppercase tracking-widest font-bold text-slate-500" style="">Avg TAT</span>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-display font-bold tracking-tight text-tertiary" style="">42m</span>
+<span class="material-symbols-outlined text-tertiary opacity-50" style="">speed</span>
+</div>
+</div>
+<div class="hidden md:flex liquid-glass rounded-xl p-5 flex-col gap-1 ghost-border">
+<span class="text-[10px] uppercase tracking-widest font-bold text-slate-500" style="">Completed</span>
+<div class="flex items-end justify-between">
+<span class="text-3xl font-display font-bold tracking-tight text-on-secondary-fixed-variant" style="">118</span>
+<span class="material-symbols-outlined text-outline opacity-50" style="">task_alt</span>
+</div>
+</div>
+</section>
+<!-- Main Data Grid / Requests Table -->
+<div class="liquid-glass rounded-2xl overflow-hidden ghost-border shadow-2xl shadow-blue-900/5">
+<!-- Table Controls -->
+<div class="p-4 flex flex-wrap items-center justify-between gap-4 bg-white/40">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" style="">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search patient or test panel..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-surface-container-low px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-600 flex items-center gap-2 hover:bg-surface-container-high transition-colors" style="">
+<span class="material-symbols-outlined text-sm" style="">filter_list</span> Filter
+                    </button>
+</div>
+</div>
+<!-- The Grid -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-separate border-spacing-y-2 px-4">
+<thead>
+<tr class="text-[10px] uppercase tracking-[0.1em] text-outline font-bold">
+<th class="py-4 px-4" style="">Patient Name</th>
+<th class="py-4 px-4" style="">Doctor</th>
+<th class="py-4 px-4" style="">Test Panel</th>
+<th class="py-4 px-4" style="">Priority</th>
+<th class="py-4 px-4" style="">Time</th>
+<th class="py-4 px-4" style="">Status</th>
+<th class="py-4 px-4 text-right" style="">Actions</th>
+</tr>
+</thead>
+<tbody>
+<!-- Row 1: Urgent -->
+<tr class="group bg-surface-container-lowest rounded-xl hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300">
+<td class="py-4 px-4 rounded-l-xl" style="">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-error font-bold text-xs" style="">SA</div>
+<div>
+<div class="text-sm font-semibold text-on-surface" style="">Sarah Ahmed</div>
+<div class="text-[10px] text-outline" style="">ID: #49201</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 text-sm text-on-secondary-fixed-variant" style="">Dr. Julian Vance</td>
+<td class="py-4 px-4" style="">
+<span class="bg-surface-container-low px-2 py-1 rounded text-xs font-medium text-primary" style="">Lipid Profile</span></td>
+<td class="py-4 px-4" style="">
+<div class="flex items-center gap-1.5 text-primary font-bold text-[10px] uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    Routine
+                                </div>
+</td>
+<td class="py-4 px-4 text-xs text-outline" style="">14:05 (2m ago)</td>
+<td class="py-4 px-4" style="">
+<span class="text-[10px] font-bold uppercase py-1 px-2 rounded bg-error-container/30 text-error" style="">Pending</span>
+</td>
+<td class="py-4 px-4 rounded-r-xl text-right" style="">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" style="" title="Accept"><span class="material-symbols-outlined text-lg" style="">check_circle</span></button>
+<button class="p-2 text-outline hover:bg-slate-100 rounded-lg transition-colors" style="" title="Open"><span class="material-symbols-outlined text-lg" style="">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Routine -->
+<tr class="group bg-surface-container-lowest rounded-xl hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300">
+<td class="py-4 px-4 rounded-l-xl" style="">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-xs" style="">MK</div>
+<div>
+<div class="text-sm font-semibold text-on-surface" style="">Marcus Knight</div>
+<div class="text-[10px] text-outline" style="">ID: #49195</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 text-sm text-on-secondary-fixed-variant" style="">Dr. Emily Stone</td>
+<td class="py-4 px-4" style="">
+<span class="bg-surface-container-low px-2 py-1 rounded text-xs font-medium text-primary" style="">CBC</span></td>
+<td class="py-4 px-4" style="">
+<div class="flex items-center gap-1.5 text-error font-bold text-[10px] uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-error animate-pulse"></span>
+                                    Urgent
+                                </div>
+</td>
+<td class="py-4 px-4 text-xs text-outline" style="">13:42 (25m ago)</td>
+<td class="py-4 px-4" style="">
+<span class="text-[10px] font-bold uppercase py-1 px-2 rounded bg-primary-container/10 text-primary-container" style="">In Progress</span>
+</td>
+<td class="py-4 px-4 rounded-r-xl text-right" style="">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-outline hover:bg-slate-100 rounded-lg transition-colors" style="" title="Open"><span class="material-symbols-outlined text-lg" style="">visibility</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Routine -->
+<tr class="group bg-surface-container-lowest rounded-xl hover:shadow-lg hover:shadow-blue-900/5 transition-all duration-300">
+<td class="py-4 px-4 rounded-l-xl" style="">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-xs" style="">LL</div>
+<div>
+<div class="text-sm font-semibold text-on-surface" style="">Leila Lopez</div>
+<div class="text-[10px] text-outline" style="">ID: #49188</div>
+</div>
+</div>
+</td>
+<td class="py-4 px-4 text-sm text-on-secondary-fixed-variant" style="">Dr. Julian Vance</td>
+<td class="py-4 px-4" style="">
+<span class="bg-surface-container-low px-2 py-1 rounded text-xs font-medium text-primary" style="">Thyroid Panel</span>
+</td>
+<td class="py-4 px-4" style="">
+<div class="flex items-center gap-1.5 text-primary font-bold text-[10px] uppercase" style="">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                    Routine
+                                </div>
+</td>
+<td class="py-4 px-4 text-xs text-outline" style="">12:15 (2h ago)</td>
+<td class="py-4 px-4" style="">
+<span class="text-[10px] font-bold uppercase py-1 px-2 rounded bg-error-container/30 text-error" style="">Pending</span>
+</td>
+<td class="py-4 px-4 rounded-r-xl text-right" style="">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-primary hover:bg-primary/10 rounded-lg transition-colors" style="" title="Accept"><span class="material-symbols-outlined text-lg" style="">check_circle</span></button>
+<button class="p-2 text-error/60 hover:bg-error/10 rounded-lg transition-colors" style="" title="Decline"><span class="material-symbols-outlined text-lg" style="">cancel</span></button>
+<button class="p-2 text-outline hover:bg-slate-100 rounded-lg transition-colors" style="" title="Open"><span class="material-symbols-outlined text-lg" style="">visibility</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-white/20 bg-white/20 flex items-center justify-between text-xs font-medium text-outline">
+<span class="" style="">Showing 3 of 24 requests</span>
+<div class="flex items-center gap-2">
+<button class="p-1 hover:bg-slate-100 rounded" style=""><span class="material-symbols-outlined text-sm" style="">chevron_left</span></button>
+<span class="px-2 text-on-surface" style="">Page 1 of 8</span>
+<button class="p-1 hover:bg-slate-100 rounded" style=""><span class="material-symbols-outlined text-sm" style="">chevron_right</span></button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Responsive Pivot) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-white/70 dark:bg-slate-900/70 backdrop-blur-lg border-t border-white/20 shadow-[0_-8px_32px_rgba(0,0,0,0.05)] z-50">
+<a class="flex flex-col items-center justify-center bg-blue-600/10 text-blue-700 dark:text-blue-300 rounded-xl px-4 py-1 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>assignment</span>
+<span class="font-inter text-[10px] uppercase tracking-widest font-bold" style="">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" style="">analytics</span>
+<span class="font-inter text-[10px] uppercase tracking-widest font-bold" style="">Results</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 active:scale-90 transition-transform" href="#" style="">
+<span class="material-symbols-outlined" style="">chat_bubble</span>
+<span class="font-inter text-[10px] uppercase tracking-widest font-bold" style="">Chat</span>
+</a>
+</nav>
+<!-- Hidden Sidebar for Desktop Context (Logical Reference) -->
+<aside class="hidden lg:flex fixed left-0 top-0 h-full w-72 bg-slate-50/80 dark:bg-slate-950/80 backdrop-blur-2xl rounded-r-xl shadow-2xl shadow-blue-900/5 flex flex-col gap-2 p-4 pt-20 z-40">
+<div class="flex items-center gap-3 p-4 mb-4 bg-white/40 rounded-xl">
+<div class="w-10 h-10 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="microscopic slide view of cellular structures with clinical blue backlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQnf4c46URGiXV47ZaUTCXaFS3VXR7hAcoXAS0smYac47hWsjck21xOf2Umw2LgtdiQbpTeISQMJnmKPqhHDcr_8PchEvnrcY36EHon-Dx2E24xjDnvbbblf9REtVlFTondU9i53-I3hjPqsLT6_TUl5RmXV96cnOdUUoBcduT5L9YwqDDfsRz_eBbebjyUpYq-XI6e_4TvSR0FdMIg8iQvZ0WoYaNiK1b3VnrgDGWu_redndgyhGFV9etJCGIRWIsA1oW91Zjbkgj" style=""/>
+</div>
+<div>
+<div class="text-sm font-black text-blue-700 uppercase tracking-tight" style="">Clinical Lab</div>
+<div class="text-[10px] font-bold text-slate-500 uppercase tracking-wider" style="">Shift Active</div>
+</div>
+</div>
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-blue-600/10 text-blue-700 font-bold rounded-lg transition-all" href="#" style="">
+<span class="material-symbols-outlined text-blue-600" style='font-variation-settings: "FILL" 1;'>biotech</span>
+<span class="text-sm" style="">Requests</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-white/40 rounded-lg transition-all" href="#" style="">
+<span class="material-symbols-outlined" style="">description</span>
+<span class="text-sm" style="">Results</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-white/40 rounded-lg transition-all" href="#" style="">
+<span class="material-symbols-outlined" style="">forum</span>
+<span class="text-sm" style="">Chat (Doctor Only)</span>
+</a>
+<div class="my-4 h-px bg-slate-200"></div>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-error hover:bg-error/5 rounded-lg transition-all" href="#" style="">
+<span class="material-symbols-outlined" style="">logout</span>
+<span class="text-sm" style="">Logout</span>
+</a>
+</nav>
+</aside>
+</body></html>

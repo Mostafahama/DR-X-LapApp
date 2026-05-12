@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Chat - Control Tower Laboratory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Cairo:wght@200..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#001849",
+                        "primary-container": "#0066ff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#191c1e",
+                        "on-primary-container": "#f8f7ff",
+                        "primary-fixed": "#dae1ff",
+                        "on-surface-variant": "#424656",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "inverse-on-surface": "#eff1f3",
+                        "inverse-surface": "#2d3133",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-tertiary-fixed-variant": "#005236",
+                        "on-background": "#191c1e",
+                        "surface-tint": "#0054d6",
+                        "tertiary-container": "#008259",
+                        "tertiary": "#006645",
+                        "outline-variant": "#c2c6d8",
+                        "on-tertiary-container": "#e1ffec",
+                        "on-tertiary-fixed": "#002113",
+                        "on-primary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary-fixed": "#6ffbbe",
+                        "error": "#ba1a1a",
+                        "surface-bright": "#f7f9fb",
+                        "on-secondary-container": "#57657a",
+                        "primary-fixed-dim": "#b3c5ff",
+                        "on-primary-fixed-variant": "#003fa4",
+                        "primary": "#0050cb",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#b3c5ff",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container": "#eceef0",
+                        "surface-dim": "#d8dadc",
+                        "surface-variant": "#e0e3e5",
+                        "outline": "#727687",
+                        "secondary-fixed": "#d5e3fc",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#4edea3",
+                        "secondary-container": "#d5e3fc",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "background": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e6e8ea",
+                        "secondary": "#515f74"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.375rem",
+                        "xl": "0.5rem",
+                        "2xl": "1rem",
+                        "3xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter", "sans-serif"],
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+        }
+        .liquid-shadow {
+            box-shadow: 0 16px 32px rgba(25, 28, 30, 0.06);
+        }
+        .active-glow {
+            box-shadow: 0 0 20px rgba(0, 102, 255, 0.15);
+        }
+        body {
+            background-color: #f7f9fb;
+            color: #191c1e;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="font-body selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl shadow-[0_4px_32_rgba(25,28,30,0.04)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<h1 class="font-inter tracking-tight font-semibold text-lg text-slate-900" data-t="title">Laboratory Chat</h1>
+</div>
+<div class="flex items-center gap-3">
+<button onclick="toggleLanguage()" class="px-3 py-1 text-[10px] font-bold border border-primary text-primary rounded-full hover:bg-primary hover:text-white transition-all uppercase tracking-widest">
+    <span id="lang-btn-text">Arabic</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-[10px] font-bold text-white overflow-hidden shadow-sm">
+<img alt="Modern Labs Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDRIz-1yTkjIGxFj2I5cZR77S4VRoBc5lBoVwEO6VqzOskHHiNKhPUqderdHp4SSl21gFYI_FUiVpcjEvdUlfTV1FsMC2NzpzuNd9A8z-zggB37VLP7oCyItH004Y-UO2aZ_pKO4cMGyqOWfirD-sXpPYeerW5djoxVBZOCQpVl9PAXMJm7rQpk6p5JgWt6e7WpK0lQdzQFzRO9z3j0mcV-nyADfE4nmgzxrOOQHpOfBucdI4pXPM4Uq2qQKXWetIGjZkZexhAqB5z"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-24 px-4 max-w-2xl mx-auto min-h-screen">
+<!-- Search & Filter Bar -->
+<div class="mb-6 space-y-4">
+<div class="glass-card rounded-2xl flex items-center px-4 py-3 gap-3">
+<span class="material-symbols-outlined text-outline">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full text-sm placeholder:text-outline font-medium" data-t-placeholder="searchPlaceholder" placeholder="Search conversations or patient IDs..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary text-white px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap active-glow" data-t="filterAll">All Chats</button>
+<button class="glass-card text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap" data-t="filterUrgent">Urgent</button>
+<button class="glass-card text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap" data-t="filterDoctors">Doctors</button>
+<button class="glass-card text-on-surface-variant px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap" data-t="filterLabTechs">Lab Technicians</button>
+</div>
+</div>
+<!-- Conversations List -->
+<div class="space-y-3">
+<!-- Conversation Item: Urgent Unread -->
+<div onclick="location.href='../laboratory_active_chat_overlay_dr._elena/code.html'" class="glass-card p-4 rounded-2xl flex items-center gap-4 border-l-4 border-l-error active:scale-[0.98] transition-all cursor-pointer">
+<div class="relative">
+<img alt="Dr. James Wilson" class="w-14 h-14 rounded-2xl object-cover" data-alt="portrait of a focused male doctor wearing glasses and a stethoscope in a bright clinical setting professional studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALhMVFsHAqnWKGcpLdjEnbezfPI8BX_ZGINVUNa4tTt5wJ1fXbQVRJG0cB_RNBRehsmqTO2oFLViiLM05Mbo_zL1eL5YylUVJ5xbTg4AY-3GE30L1TvVtR_WPc1lzpNUDPxeKK0tnGD5-y_WSnBuXJDjBoL2iGoxtAsS6c5yDLgbIAw0vMoUHx-1j97-QFGwdbS083CZufrY_jaafUSos3EI_p49acpc-He9vpNo_p2YD8OvdbNCGBmwjS2X-RRy5VAAWO3caupUxg"/>
+<span class="absolute -top-1 -right-1 w-4 h-4 bg-error rounded-full border-2 border-white flex items-center justify-center">
+<span class="w-1.5 h-1.5 bg-white rounded-full"></span>
+</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-bold text-on-surface truncate font-headline" data-t="nameJames">Dr. James Wilson</h3>
+<span class="text-[10px] font-bold text-error uppercase tracking-tighter" data-t="time1">09:42 AM</span>
+</div>
+<p class="text-sm font-semibold text-primary-container truncate" data-t="msgJames1">Urgent: Patient #49201</p>
+<p class="text-xs text-on-surface-variant/80 truncate" data-t="msgJames2">The pathology report shows significant markers...</p>
+</div>
+<div class="flex flex-col items-end gap-2">
+<div class="bg-error text-white text-[10px] font-black px-2 py-0.5 rounded-full">1</div>
+</div>
+</div>
+<!-- Conversation Item: Unread -->
+<div onclick="location.href='../laboratory_active_chat_overlay_dr._elena/code.html'" class="glass-card p-4 rounded-2xl flex items-center gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="relative">
+<img alt="Dr. Elena Rodriguez" class="w-14 h-14 rounded-2xl object-cover" data-alt="professional female doctor with confident expression in sterile modern clinic environment wearing stethoscope soft blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA21AXauiAvnICazjF007paIwWA3XPa5gcQ7XQpPC72f_OrNiWbjfDQxL2DFyq4BPmZCCK9oT1UznX9qgoQBh2uWf57X3sashmVAkoh0dEVEtajjsivctsTz8dfcRLAWt3zT_g6psK8Idy2bCC51fJ0KszkHEhcdqJkwzkI7x9i825GGArmVEVz-o08_C8X2cGE4SAIu_PX8qDL9ZEouxryiKdd8oFI4Wq4rlhTl9Ha4Tp_iWM1A0iWwjB-_e8sQRXdl5pf9Ilm3n8r"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-tertiary rounded-full border-2 border-white"></span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-bold text-on-surface truncate font-headline" data-t="nameElena">Dr. Elena Rodriguez</h3>
+<span class="text-[10px] font-bold text-outline uppercase tracking-tighter" data-t="yesterday">Yesterday</span>
+</div>
+<p class="text-sm font-semibold text-on-surface truncate" data-t="msgElena1">Checking on CBC results...</p>
+<p class="text-xs text-on-surface-variant/80 truncate" data-t="msgElena2">Did we finalize the hematology panel for Ward 4?</p>
+</div>
+<div class="bg-primary-container text-white text-[10px] font-black px-2 py-0.5 rounded-full">3</div>
+</div>
+<!-- Conversation Item: Read -->
+<div onclick="location.href='../laboratory_active_chat_overlay_dr._elena/code.html'" class="bg-surface-container-low p-4 rounded-2xl flex items-center gap-4 opacity-90 active:scale-[0.98] transition-all cursor-pointer">
+<div class="relative">
+<img alt="Dr. Michael Chen" class="w-14 h-14 rounded-2xl object-cover filter grayscale-[40%]" data-alt="senior male physician with graying hair wearing lab coat and glasses in a high-tech medical research facility background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCasu7T_bWb3yceD59Vgys9nKkWvWmlt963i60h3swWovW0OzO7PLaF2qmMTldd1H7V9NQUpK6l4biR9bl_UYfK4Q8SoJOPGFmmbIeOEFSA-yz2ddQFEoOtt3-BCG_mwXj_JAh_qwFu5LYQV99VlO7iyJT8pFeM51iMmCc6y3yHhOnPwFXZ-WacqjXO21UPdTOiyTFUxtEdEVdzuBxO5kKwPOSdVl81Fj-rs_xW3yMKF6OQ665Y2puft8zoJlhfWLsVIoIc_zKXnlub"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-semibold text-on-surface truncate font-headline" data-t="nameMichael">Dr. Michael Chen</h3>
+<span class="text-[10px] font-bold text-outline uppercase tracking-tighter" data-t="mon">Mon</span>
+</div>
+<p class="text-sm text-on-secondary-fixed-variant truncate" data-t="msgMichael1">Lab Equipment Calibration</p>
+<p class="text-xs text-outline truncate" data-t="msgMichael2">Thanks for the update. We'll proceed with the...</p>
+</div>
+<span class="material-symbols-outlined text-primary text-lg">done_all</span>
+</div>
+<!-- Conversation Item: Group -->
+<div onclick="location.href='../laboratory_active_chat_overlay_dr._elena/code.html'" class="glass-card p-4 rounded-2xl flex items-center gap-4 active:scale-[0.98] transition-all cursor-pointer">
+<div class="w-14 h-14 flex items-center justify-center bg-primary-fixed rounded-2xl">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-bold text-on-surface truncate font-headline" data-t="nameTeam">Night Shift Team</h3>
+<span class="text-[10px] font-bold text-outline uppercase tracking-tighter">18:12</span>
+</div>
+<p class="text-sm font-semibold text-on-surface truncate"><span class="text-primary" data-t="you">You:</span> <span data-t="msgTeam1">All samples processed for...</span></p>
+<p class="text-xs text-on-surface-variant/80 truncate" data-t="msgTeam2">The freezer logs have been updated in the system.</p>
+</div>
+</div>
+<!-- Conversation Item: Read -->
+<div onclick="location.href='../laboratory_active_chat_overlay_dr._elena/code.html'" class="bg-surface-container-low p-4 rounded-2xl flex items-center gap-4 opacity-90 active:scale-[0.98] transition-all cursor-pointer">
+<div class="relative">
+<img alt="Nurse Sarah Thompson" class="w-14 h-14 rounded-2xl object-cover filter grayscale-[40%]" data-alt="friendly female nurse in blue scrubs smiling in a hospital corridor bright ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyqvpYLHoZP9obn1ZC-PEkkkhwdpMbQt0C5ox0ry0zxj2qrkuPfL_gnc3in-FQsrKfWiF-dh7cbeZGaIrDaDvjEMk5qm7ybDj_Ut9J-O11sb2BzDymzoIr_NLHLKBjwxqe2MOUNoEroRaSdVFOrpGIIXxX4I_Ma3Bw0nh_P6MvJV7eNXbQVI_SFBhLkBReLRVZTSbCKBHcFHlW6Mbdj5EOB8rr5yD0WSfp-6qMIPtH-ISQ58k2Y_kDn1cwmnysNjd4AsSuvHOM6DwH"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-1">
+<h3 class="font-semibold text-on-surface truncate font-headline" data-t="nameSarah">Nurse Sarah Thompson</h3>
+<span class="text-[10px] font-bold text-outline uppercase tracking-tighter" data-t="jan12">Jan 12</span>
+</div>
+<p class="text-sm text-on-secondary-fixed-variant truncate" data-t="msgSarah1">Sample Pickup</p>
+<p class="text-xs text-outline truncate" data-t="msgSarah2">I'll be at the lab in 5 minutes to collect...</p>
+</div>
+<span class="material-symbols-outlined text-outline text-lg">done_all</span>
+</div>
+</div>
+</main>
+<!-- FAB: New Chat -->
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pt-2 pb-safe bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl rounded-t-3xl border-t border-white/20 shadow-[0_-16px_32px_rgba(0,84,214,0.04)]">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-400 transition-all" href="#">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1" data-t="navRequests">Requests</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-400 transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1" data-t="navResults">Results</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-700 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/30 rounded-xl px-4 py-1.5 transform scale-110 duration-300" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+<span class="font-['Inter'] text-[10px] font-bold uppercase tracking-[0.05em] mt-1" data-t="navChat">Chat</span>
+</a>
+</nav>
+
+<script>
+    const translations = {
+        en: {
+            title: "Laboratory Chat",
+            searchPlaceholder: "Search conversations or patient IDs...",
+            filterAll: "All Chats",
+            filterUrgent: "Urgent",
+            filterDoctors: "Doctors",
+            filterLabTechs: "Lab Technicians",
+            nameJames: "Dr. James Wilson",
+            time1: "09:42 AM",
+            msgJames1: "Urgent: Patient #49201",
+            msgJames2: "The pathology report shows significant markers...",
+            nameElena: "Dr. Elena Rodriguez",
+            yesterday: "Yesterday",
+            msgElena1: "Checking on CBC results...",
+            msgElena2: "Did we finalize the hematology panel for Ward 4?",
+            nameMichael: "Dr. Michael Chen",
+            mon: "Mon",
+            msgMichael1: "Lab Equipment Calibration",
+            msgMichael2: "Thanks for the update. We'll proceed with the...",
+            nameTeam: "Night Shift Team",
+            you: "You:",
+            msgTeam1: "All samples processed for...",
+            msgTeam2: "The freezer logs have been updated in the system.",
+            nameSarah: "Nurse Sarah Thompson",
+            jan12: "Jan 12",
+            msgSarah1: "Sample Pickup",
+            msgSarah2: "I'll be at the lab in 5 minutes to collect...",
+            navRequests: "Requests",
+            navResults: "Results",
+            navChat: "Chat",
+            langBtn: "Arabic"
+        },
+        ar: {
+            title: "محادثة المعمل",
+            searchPlaceholder: "ابحث عن المحادثات أو معرفات المرضى...",
+            filterAll: "كل المحادثات",
+            filterUrgent: "عاجل",
+            filterDoctors: "الأطباء",
+            filterLabTechs: "فنيي المعمل",
+            nameJames: "د. جيمس ويلسون",
+            time1: "٠٩:٤٢ ص",
+            msgJames1: "عاجل: المريض #٤٩٢٠١",
+            msgJames2: "تقرير الباثولوجيا يظهر مؤشرات هامة...",
+            nameElena: "د. إلينا رودريغيز",
+            yesterday: "أمس",
+            msgElena1: "التحقق من نتائج صورة الدم...",
+            msgElena2: "هل انتهينا من لوحة أمراض الدم للجناح ٤؟",
+            nameMichael: "د. مايكل تشين",
+            mon: "الاثنين",
+            msgMichael1: "معايرة معدات المعمل",
+            msgMichael2: "شكراً على التحديث. سنمضي قدماً في...",
+            nameTeam: "فريق الوردية الليلية",
+            you: "أنت:",
+            msgTeam1: "تم معالجة جميع العينات لـ...",
+            msgTeam2: "تم تحديث سجلات المجمد في النظام.",
+            nameSarah: "الممرضة سارة تومسون",
+            jan12: "١٢ يناير",
+            msgSarah1: "استلام العينات",
+            msgSarah2: "سأكون في المعمل خلال ٥ دقائق لاستلام...",
+            navRequests: "الطلبات",
+            navResults: "النتائج",
+            navChat: "المحادثة",
+            langBtn: "English"
+        }
+    };
+
+    function updateLanguage(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        if (lang === 'ar') {
+            document.body.style.fontFamily = "'Cairo', 'Inter', sans-serif";
+        } else {
+            document.body.style.fontFamily = "'Inter', sans-serif";
+        }
+
+        document.querySelectorAll('[data-t]').forEach(el => {
+            const key = el.getAttribute('data-t');
+            if (translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        document.querySelectorAll('[data-t-placeholder]').forEach(el => {
+            const key = el.getAttribute('data-t-placeholder');
+            if (translations[lang][key]) {
+                el.placeholder = translations[lang][key];
+            }
+        });
+
+        document.getElementById('lang-btn-text').textContent = translations[lang].langBtn;
+        localStorage.setItem('preferred-lang', lang);
+        
+        // Update all links to propagate the language
+        document.querySelectorAll('a, div[onclick]').forEach(el => {
+            let onclick = el.getAttribute('onclick');
+            if (onclick && onclick.includes('.html')) {
+                // If it's a relative link, we'll keep the language in localStorage
+            }
+        });
+    }
+
+    function toggleLanguage() {
+        const currentLang = localStorage.getItem('preferred-lang') || 'en';
+        const newLang = currentLang === 'en' ? 'ar' : 'en';
+        updateLanguage(newLang);
+    }
+
+    // Initialize
+    window.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('preferred-lang') || 'en';
+        updateLanguage(savedLang);
+    });
+</script>
+</body></html>

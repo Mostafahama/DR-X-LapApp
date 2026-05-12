@@ -91,9 +91,21 @@
   "testThyroidPanel": "فحص الغدة الدرقية",
   "cardiologyWard": "قسم القلب - 302",
   "patientNoteSarah": "المريضة تعاني من تعب حاد وخفقان. إعطاء الأولوية للوحة أمراض الدم. تم التحقق من عينة الصيام لملف الدهون.",
-  "drSeries": "DR. SERIES",
+  "drSeries": "DR. X",
   "patientJamesWilson": "جيمس ويلسون",
   "techMarkV": "فني. مارك ف.",
   "techElenaR": "فني. إلينا ر.",
-  "notAssigned": "غير معين"
+  "notAssigned": "غير معين",
+  "clinicalCommunications": "الاتصالات السريرية",
+  "searchChat": "ابحث في جهات الاتصال أو الخيوط السريرية...",
+  "active": "نشط",
+  "channels": "القنوات",
+  "justNow": "الآن",
+  "activeNow": "نشط الآن",
+  "today": "اليوم",
+  "typeMessage": "اكتب رسالة سريرية...",
+  "photos": "صور",
+  "reports": "تقارير",
+  "lab": "مختبر",
+  "voice": "صوت"
 }
